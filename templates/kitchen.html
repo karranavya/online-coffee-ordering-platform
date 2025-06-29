@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitchen</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/kitchen.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Kitchen Orders</h1>
+    <div id="order-container">
+      {% for order_id, order in orders.items() %}
+      <div class="order-card" id="order-{{ order_id }}">
+        <h2>Order #{{ order_id }}</h2>
+        <ul>
+          {% for item in order.get('items', []) %}
+          <li>
+            {{ item.name }} - Quantity: {{ item.quantity }} - ₹{{ item.price }}
+          </li>
+          {% endfor %}
+        </ul>
+        <form method="POST" action="/kitchen">
+          <input type="hidden" name="order_id" value="{{ order_id }}" />
+          <label for="status-{{ order_id }}">Update Status:</label>
+          <select name="status" id="status-{{ order_id }}">
+            <option value="Order Confirmed" {% if order.status == "Order Confirmed" %}selected{% endif %}>
+              Order Confirmed
+            </option>
+            <option value="Preparing" {% if order.status == "Preparing" %}selected{% endif %}>
+              Preparing
+            </option>
+            <option value="Out for Delivery" {% if order.status == "Out for Delivery" %}selected{% endif %}>
+              Out for Delivery
+            </option>
+            <option value="Delivered" {% if order.status == "Delivered" %}selected{% endif %}>
+              Delivered
+            </option>
+          </select>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <script>
+      const socket = io();
+      let bagItems = JSON.parse(localStorage.getItem("bagItems")) || [];
+      function clearBag() {
+        console.log("Clearing bag items...");
+        localStorage.removeItem("bagItems");
+        bagItems = [];
+        
+        console.log("Bag has been cleared.");
+      }
+      // Listen for new orders from the server
+      socket.on("new_order", (data) => {
+        console.log("New Order Received:", data);
+
+        // Create a new order card dynamically
+        const orderContainer = document.getElementById("order-container");
+        const newOrderHTML = `
+          <div class="order-card" id="order-${data.order_id}">
+            <h2>Order #${data.order_id}</h2>
+            <ul>
+              ${data.items
+                .map(
+                  (item) =>
+                    `<li>${item.name} - Quantity: ${item.quantity} - ₹${item.price}</li>`
+                )
+                .join("")}
+            </ul>
+            <form method="POST" action="/kitchen">
+              <input type="hidden" name="order_id" value="${data.order_id}" />
+              <label for="status-${data.order_id}">Update Status:</label>
+              <select name="status" id="status-${data.order_id}">
+                <option value="Order Confirmed">Order Confirmed</option>
+                <option value="Preparing">Preparing</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+              <button type="submit">Update</button>
+            </form>
+          </div>
+        `;
+        orderContainer.insertAdjacentHTML("beforeend", newOrderHTML);
+      });
+
+      // Listen for status updates from the kitchen staff
+      socket.on("status_update", (data) => {
+        console.log("Status Update:", data);
+        const orderCard = document.getElementById(`order-${data.order_id}`);
+        if (orderCard) {
+          const statusElement = orderCard.querySelector("form select");
+          if (statusElement) {
+            statusElement.value = data.status;
+            if (data.status === "Delivered") {
+              clearBag();
+            }
+          }
+        }
+      });
+      
+      // Emit status updates to the server
+      document.addEventListener("submit", (event) => {
+        if (event.target.closest("form")) {
+          event.preventDefault(); // Prevent form submission
+          const form = event.target;
+          const orderId = form.querySelector("input[name='order_id']").value;
+          const status = form.querySelector("select[name='status']").value;
+
+          // Emit the status update to the server via Socket.IO
+          socket.emit("status_update", {
+            order_id: orderId,
+            status: status,
+            time: new Date().toLocaleTimeString(),
+          });
+
+          console.log(`Order ${orderId} status updated to: ${status}`);
+
+          // Optional: You might want to submit the form after emitting
+          form.submit();
+        }
+      });
+      
+    </script>
+  </body>
+</html>

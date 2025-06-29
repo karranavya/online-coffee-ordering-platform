@@ -1,0 +1,409 @@
+/* Modern Coffee Shop Styles */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --primary: #15b2ca;
+  --secondary: #ebb7a8;
+  --accent: #d4a574;
+  --dark: #1a1a1a;
+  --light: #ffffff;
+  --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, var(--dark), #2c2c2c);
+  color: var(--light);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header Styles */
+/* Enhanced Header Styles */
+/* Header Component Styles */
+header {
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* backdrop-filter: blur(10px); */
+  transition: all 0.3s ease;
+}
+
+/* Logo Styles */
+.logo {
+  font-family: "DM Serif Text", serif;
+  font-size: 27.5px;
+  font-weight: bold;
+  color: #ffffff;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Create a subtle glow effect behind the logo */
+.logo::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2),
+    transparent 70%
+  );
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover::before {
+  opacity: 1;
+}
+
+/* Navigation Options */
+.options {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.options a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect for navigation links */
+.options a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #15b2ca, #ebb7a8);
+  transition: width 0.3s ease;
+}
+
+.options a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.options a:hover::before {
+  width: 80%;
+}
+
+/* Active state for current page */
+.options a.active {
+  color: #15b2ca;
+}
+
+.options a.active::before {
+  width: 80%;
+  background: #15b2ca;
+}
+
+/* Scroll state */
+header.scrolled {
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  .options {
+    gap: 1rem;
+  }
+
+  .options a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Header Animation */
+@keyframes headerSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+header {
+  animation: headerSlideDown 0.5s ease forwards;
+}
+
+/* Scroll state */
+header.scrolled {
+  padding: 0.75rem 0;
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for header appearance */
+@keyframes headerSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+header {
+  animation: headerSlideDown 0.5s ease forwards;
+}
+
+/* Intro Section */
+.intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 165, 116, 0.1),
+    transparent
+  );
+}
+
+#a1 h1,
+#a3 h1 {
+  font-family: "DM Serif Text", serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+#a2 img {
+  width: 400px;
+  height: auto;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Button Styles */
+button {
+  background: var(--accent);
+  color: var(--light);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+}
+
+/* About Section */
+.about {
+  padding: 5rem 2rem;
+  background: rgba(26, 26, 26, 0.8);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+  justify-content: space-between;
+}
+
+.left_part {
+  max-width: 600px;
+}
+
+#b1 h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.right_part img {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+  width: 300px;
+  height: auto;
+}
+
+.right_part img:hover {
+  transform: scale(1.02);
+}
+
+/* Products Section */
+.products {
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, 0.8),
+    rgba(26, 26, 26, 0.9)
+  );
+}
+
+.heading h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--accent);
+  margin-bottom: 3rem;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.box:hover {
+  transform: translateY(-10px);
+  background: rgba(212, 165, 116, 0.1);
+  border-color: var(--accent);
+}
+
+.box h3 {
+  font-family: "DM Serif Text", serif;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Responsive Grid */
+.coffee,
+.non-coffee {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left_part {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .options {
+    gap: 1rem;
+  }
+}
+
+/* Custom hover effects for product boxes */
+[id^="c"] {
+  position: relative;
+  overflow: hidden;
+}
+
+[id^="c"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+[id^="c"]:hover::before {
+  opacity: 0.2;
+}
+#c1:hover {
+  background-image: url(/static/Images/Espresso.jpg);
+}
+#c2:hover {
+  background-image: url(/static/Images/latte.jpg); /* Replace with your image path */
+}
+
+#c3:hover {
+  background-image: url(/static/Images/Machhiato.jpg); /* Replace with your image path */
+}
+
+#c4:hover {
+  background-image: url(/static/Images/Flat_White.jpg); /* Replace with your image path */
+}
+
+#c5:hover {
+  background-image: url(/static/Images/Cappuccino.jpg); /* Replace with your image path */
+}
+
+#c6:hover {
+  background-image: url(/static/Images/Hot\ chocolate.jpg); /* Replace with your image path */
+}
+
+#c7:hover {
+  background-image: url(/static/Images/Milkshake.jpg); /* Replace with your image path */
+}
+
+#c8:hover {
+  background-image: url(/static/Images/Smoothie.jpg); /* Replace with your image path */
+}
+
+#c9:hover {
+  background-image: url(/static/Images/Lemonade.jpg); /* Replace with your image path */
+}
+
+#c10:hover {
+  background-image: url(/static/Images/Vanilla/Milkshake.jpg);
+}
+#moreButton {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

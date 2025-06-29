@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bag.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo" style="font-weight: bold; font-size: 27.5px">
+        CoffeeCup
+      </div>
+      <div class="options">
+        <a href="{{ url_for('home') }}">About</a>
+        <a href="{{ url_for('menu') }}">Menu</a>
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <div class="Bag">
+          <span id="noOfItems"></span>
+          <a href="{{ url_for('bag') }}" id="addBag"></a>
+        </div>
+      </div>
+    </header>
+
+    <div class="bagInfo">
+      <!-- Multiple .bag elements go here -->
+      <div class="bagItems"></div>
+
+      <div class="price"></div>
+    </div>
+
+    <button class="clearButton">Clear Bag</button>
+    <!-- <script src="./menu.js"></script> -->
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/items.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bag.js') }}"></script>
+  </body>
+</html>

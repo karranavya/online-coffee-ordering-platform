@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Status</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">CoffeeCup</div>
+      <div class="options">
+        <a href="{{ url_for('menu') }}">Menu</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        
+        <a href="{{ url_for('login') }}"> Login</a>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="Header">
+        <div class="restaurant-info">
+          <img
+            src="https://via.placeholder.com/60"
+            alt="Restaurant Logo"
+            class="restaurant-logo"
+          />
+          <div class="restaurant-details">
+            <h2>Tasty Bites Restaurant</h2>
+            <p class="rating"><i class="fas fa-star"></i> 4.8 (500+ reviews)</p>
+          </div>
+        </div>
+        <div class="order-status-card">
+          <div class="status-header">
+            <h1>Track Your Order</h1>
+            <span class="order-id">Order #</span>
+          </div>
+          <div class="delivery-time">
+            <i class="fas fa-clock"></i>
+            <div class="time-details">
+              <p>Estimated Delivery Time</p>
+              <h3>30-45 mins</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div class="summary-item">
+          <i class="fas fa-utensils"></i>
+          <span id="items-count">0 Items</span>
+        </div>
+        <div class="summary-item">
+          <i class="fas fa-dollar-sign"></i>
+          <span id="total-price">₹0</span>
+        </div>
+        <div class="summary-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span id="table-number">2.5 km</span>
+        </div>
+      </div>
+
+      <div class="tracking-container">
+        <div class="tracking-step" id="order-confirmed-step">
+          <div class="step-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="step-content">
+            <h3>Order Confirmed</h3>
+            <p>Your order has been received and confirmed</p>
+            <div class="step-details">
+              <span class="time"><i class="far fa-clock"></i> --:--</span>
+              <span class="status-tag">Pending</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracking-step" id="preparing-step">
+          <div class="step-icon">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="step-content">
+            <div class="status-title"><h3>Preparing Your Order</h3></div>
+
+            <p>Our chefs are preparing your delicious meal</p>
+            <div class="step-details">
+              <span class="time"><i class="far fa-clock"></i> --:--</span>
+              <span class="status-tag">Pending</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracking-step" id="delivery-step">
+          <div class="step-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="step-content">
+            <div class="status-title"><h3>Out for Delivery</h3></div>
+            <p>Your food is on the way to your location</p>
+            <div class="step-details">
+              <span class="time"><i class="far fa-clock"></i> --:--</span>
+              <span class="status-tag">Pending</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tracking-step" id="delivered-step">
+          <div class="step-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="step-content">
+            <div class="status-title">
+              <h3>Delivered</h3>
+            </div>
+            <p>Your food has been delivered successfully</p>
+            <div class="step-details">
+              <span class="time"><i class="far fa-clock"></i> --:--</span>
+              <span class="status-tag">Pending</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="delivery-details">
+        <div class="delivery-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h4>Table no: 5</h4>
+          </div>
+        </div>
+        <button class="support-btn">
+          <i class="fas fa-headset"></i>
+          Need Help?
+        </button>
+      </div>
+    </div>
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/index/orderTracking.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index/orderSummary.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index/main.js') }}"></script>
+  </body>
+</html>

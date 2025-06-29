@@ -1,0 +1,422 @@
+/* Modern CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #8b4513, #d2691e);
+  color: #2d2420;
+  font-family: "Poppins", Arial, sans-serif;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Glassmorphism Header */
+header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(210, 105, 30, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "DM Serif Text", serif;
+  font-size: 27.5px;
+  font-weight: bold;
+  color: #ffffff;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.options {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.options a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect for navigation links */
+.options a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #a0522d, #cd853f);
+  transition: width 0.3s ease;
+}
+
+.options a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.options a:hover::before {
+  width: 80%;
+}
+
+/* Active state for current page */
+.options a.active {
+  color: #deb887;
+}
+
+.options a.active::before {
+  width: 80%;
+  background: #15b2ca;
+}
+
+.pop-animation {
+  animation: pop 0.3s ease;
+}
+
+/* Enhanced Bag Icon */
+.Bag {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+#addBag {
+  background-image: url(../Images/bag.png);
+  background-position: center;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#noOfItems {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: linear-gradient(145deg, #8b4513, #a0522d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ffffff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.Bag:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Bag Items */
+.bagInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.bagItems {
+  flex: 1;
+  min-width: 300px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bag {
+  background: linear-gradient(145deg, #deb887, #cd853f);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bag:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.bag .BagImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bag .BagImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bag:hover .BagImage img {
+  transform: scale(1.05);
+}
+
+.bag .itemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.bag .clear {
+  border: none;
+  color: whitesmoke;
+  background-color: rgb(113, 46, 21);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+.bag .itemDetails h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.bag .soldBy,
+.bag .idNum {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+/* Enhanced Quantity Selectors */
+.selectors {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 1rem 0;
+}
+
+.selectors button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectors button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.quantityDisplay {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Enhanced Price Summary */
+.price {
+  background: rgba(255, 248, 240, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.price div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.price .highlight {
+  color: #8b4513;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+
+.price .highlight::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #8b4513;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.price .highlight:hover::after {
+  transform: scaleX(1);
+}
+
+.price hr {
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.total {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.total_price {
+  font-size: 1.4rem;
+  color: #8b4513;
+  font-weight: 700;
+}
+
+/* Enhanced Buttons */
+#google-pay-button {
+  background: linear-gradient(145deg, #8b4513, #a0522d);
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+#google-pay-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(145deg, #a0522d, #8b4513);
+  box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+}
+
+.clearButton {
+  background: linear-gradient(145deg, #d2691e, #cd853f);
+  box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 2rem auto;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.clearButton:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(145deg, #cd853f, #d2691e);
+  box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bagInfo {
+    padding: 1rem;
+  }
+
+  .bag {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .bag .BagImage {
+    margin: 0 auto;
+  }
+
+  .selectors {
+    justify-content: center;
+  }
+
+  .price {
+    margin: 0 auto;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bag {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.price {
+  animation: fadeIn 0.5s ease-out 0.2s backwards;
+}

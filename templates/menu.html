@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artisan Coffee House</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/menu.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">CoffeeCup</div>
+      <div class="options">
+        <a href="">Menu</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <div class="bag">
+          <span id="noOfItems"></span>
+          <a href="{{ url_for('bag') }}" id="addBag"></a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="menu-section">
+        <h1>Coffee</h1>
+        <div class="coffee"></div>
+      </div>
+      <div class="menu-section">
+        <h1>Non Coffee</h1>
+        <div class="non_coffee"></div>
+      </div>
+      <button class="clearButton">Clear Bag</button>
+    </main>
+    <script src="{{ url_for('static', filename='js/items.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bag.js') }}"></script>
+  </body>
+</html>

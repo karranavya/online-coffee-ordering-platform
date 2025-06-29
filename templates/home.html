@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoffeeCup</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+  </head>
+  <body>
+    <div class="top">
+      <header>
+        <div class="logo" style="font-weight: bold; font-size: 27.5px">
+          CoffeeCup
+        </div>
+        <div class="options">
+          <a href="#about" onclick="scrollToSection(event, 'about')">About</a>
+          <a href="{{ url_for('menu') }}">Menu</a>
+          <a href="">Home</a>
+          <a href="{{ url_for('login') }}"> Login</a>
+        </div>
+      </header>
+      <div class="intro">
+        <div id="a1" style="color: white">
+          <h1>START YOUR DAY</h1>
+        </div>
+        <div id="a2">
+          <img src="{{ url_for('static', filename='Images/3.png') }}" alt="" />
+        </div>
+        <div id="a3" style="color: white">
+          <h1>WITH OUR COFFEE</h1>
+        </div>
+        <div id="a4">
+          <button onclick="window.location.href='{{ url_for('menu') }}'">
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="about" id="about">
+      <div class="left_part">
+        <div id="b1">
+          <h1>Perfect Place To Enjoy Your Coffee</h1>
+        </div>
+        <div id="b2">
+          <p>
+            CoffeeCup is a cozy, inviting coffee shop nestled in the heart of
+            the city, where the rich aroma of freshly brewed coffee fills the
+            air. Known for its artisanal blends and warm atmosphere, CoffeeCup
+            is the perfect spot for anyone looking to start their day on a high
+            note. Whether you're grabbing a quick espresso on your way to work
+            or settling in with a book and a latte, CoffeeCup offers a diverse
+            menu of carefully crafted beverages and delicious pastries.
+          </p>
+        </div>
+        <div id="a4"><button>Learn More</button></div>
+      </div>
+      <div class="right_part">
+        <div>
+          <img src="{{ url_for('static', filename='Images/2.png') }}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="products" id="products">
+      <div class="heading">
+        <h1>PRODUCTS</h1>
+      </div>
+      <div class="items">
+        <h2>COFFEE</h2>
+        <div class="coffee">
+          <div class="box" id="c1">
+            <h3>Espresso</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c2">
+            <h3>Latte</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c3">
+            <h3>Machhiato</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c4">
+            <h3>Flat White</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+        </div>
+        <h2>NON COFFEE</h2>
+        <div class="non-coffee">
+          <div class="box" id="c6">
+            <h3>Hot chocolate</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c7">
+            <h3>Shakes</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c8">
+            <h3>Smoothie</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+          <div class="box" id="c9">
+            <h3>Lemonade</h3>
+            <button onclick="window.location.href='{{ url_for('menu') }}'">
+              order
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <button
+        id="moreButton"
+        onclick="window.location.href='{{ url_for('menu') }}'"
+      >
+        More
+      </button>
+    </div>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+  </body>
+</html>
